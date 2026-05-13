@@ -615,10 +615,10 @@
     });
 
     document.getElementById('modal-close').addEventListener('click', function() {
-    if (window.slideTimer) clearInterval(window.slideTimer);
-    backdrop.classList.remove('open');
-    document.body.style.overflow = '';
-    });
+  if (window.slideTimer) clearInterval(window.slideTimer);
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+});
 
     backdrop.addEventListener('click', function(e) {
       if (e.target === backdrop) {
