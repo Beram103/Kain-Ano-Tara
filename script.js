@@ -36,9 +36,9 @@
            Format: "your-photo-url-here",
         ══════════════════════════════════════════ */
         hero: [
-          /* SLIDE 1 — e.g. overall cover shot of the food spots */ "garlic1.jpg",
-          /* SLIDE 2 — e.g. close-up of food                    */ "garlic2.jpg",
-          /* SLIDE 3 — e.g. the street / place ambiance         */ "garlic3.jpg",
+          /* SLIDE 1 — e.g. overall cover shot of the food spots */ "pics/garlic1.jpg",
+          /* SLIDE 2 — e.g. close-up of food                    */ "pics/garlic2.jpg",
+          /* SLIDE 3 — e.g. the street / place ambiance         */ "pics/garlic3.jpg",
           /* ▼ OPTIONAL SLIDE 4 — delete this line to remove    */ "",
         ],
 
