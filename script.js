@@ -39,7 +39,7 @@
           /* SLIDE 1 — e.g. overall cover shot of the food spots */ "pics/garlic1.jpg",
           /* SLIDE 2 — e.g. close-up of food                    */ "pics/garlic2.jpg",
           /* SLIDE 3 — e.g. the street / place ambiance         */ "pics/garlic3.jpg",
-          /* ▼ OPTIONAL SLIDE 4 — delete this line to remove    */ "",
+        //   /* ▼ OPTIONAL SLIDE 4 — delete this line to remove    */ "",
         ],
 
         content: `
@@ -173,11 +173,19 @@
            ▸ TO REMOVE a slide: delete that line entirely.
            Format: "your-photo-url-here",
         ══════════════════════════════════════════ */
+        // hero: [
+        //   /* SLIDE 1 — e.g. SM J Mall Food Court interior / food  */ "jmall-foodcourt1.jpg",
+        //   /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "",
+        //   /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "pics/5g6.jpg",
+        //   /* ▼ OPTIONAL SLIDE 4 — delete this line to remove      */ "",
+        // ],
+
         hero: [
-          /* SLIDE 1 — e.g. SM J Mall Food Court interior / food  */ "jmall-foodcourt1.jpg",
-          /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "",
-          /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "pics/5g6.jpg",
-          /* ▼ OPTIONAL SLIDE 4 — delete this line to remove      */ "",
+            "pics/jmall-foodcourt1.jpg",
+            "pics/5g1.jpg",
+            "pics/5g3.jpg",
+            "pics/5g4.jpg",
+            "pics/5g6.jpg",
         ],
 
         content: `
