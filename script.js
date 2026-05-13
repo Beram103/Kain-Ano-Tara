@@ -25,7 +25,7 @@
     const modalTitle = document.getElementById('modal-title');
     const modalMeta = document.getElementById('modal-meta');
     const modalContent = document.getElementById('modal-content');
-    let slideTimer = null;
+    window.slideTimer = null;
 
     const posts = [
       {
@@ -496,52 +496,55 @@
         goToCardSlide(cardIndex, next);
         }, 3500);
     }
-    }
-
-    /* ── Modal slideshow functions ── */
-function buildSlideshow(heroData) {
-  const modalHero = document.getElementById('modal-hero');
-  if (!modalHero) return;
-  
-  modalHero.innerHTML = '';
-  const slides = Array.isArray(heroData) ? heroData.filter(s => s && s.trim() !== '') : [];
-  
-  if (slides.length === 0) {
-    modalHero.innerHTML = '<div class="hero-placeholder">📸 Add hero images in the "hero" array</div>';
-    return;
-  }
-  
-  slides.forEach((src, i) => {
-    const slide = document.createElement('div');
-    slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
-    slide.style.backgroundImage = `url('${src}')`;
-    modalHero.appendChild(slide);
-  });
-  
-  if (slides.length > 1) {
-    let currentModalSlide = 0;
-    const modalSlides = modalHero.querySelectorAll('.hero-slide');
-    
-    function goToModalSlide(n) {
-      modalSlides[currentModalSlide].classList.remove('active');
-      currentModalSlide = n;
-      modalSlides[currentModalSlide].classList.add('active');
-    }
-    
-    if (slideTimer) clearInterval(slideTimer);
-    slideTimer = setInterval(() => {
-      goToModalSlide((currentModalSlide + 1) % slides.length);
-    }, 4000);
-  }
 }
 
-    document.addEventListener('click', e => {
-      const link = e.target.closest('[data-idx]');
+    /* ── Modal slideshow functions ── */
+    function buildSlideshow(heroData) {
+      const modalHero = document.getElementById('modal-hero');
+      if (!modalHero) return;
+      
+      modalHero.innerHTML = '';
+      const slides = Array.isArray(heroData) ? heroData.filter(s => s && s.trim() !== '') : [];
+      
+      if (slides.length === 0) {
+        modalHero.innerHTML = '<div class="hero-placeholder">📸 Add hero images in the "hero" array</div>';
+        return;
+      }
+      
+      slides.forEach((src, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        slide.style.backgroundImage = `url('${src}')`;
+        modalHero.appendChild(slide);
+      });
+      
+      if (slides.length > 1) {
+        let currentModalSlide = 0;
+        const modalSlides = modalHero.querySelectorAll('.hero-slide');
+        
+        function goToModalSlide(n) {
+          modalSlides[currentModalSlide].classList.remove('active');
+          currentModalSlide = n;
+          modalSlides[currentModalSlide].classList.add('active');
+        }
+        
+        if (window.slideTimer) clearInterval(window.slideTimer);
+        window.slideTimer = setInterval(() => {
+          goToModalSlide((currentModalSlide + 1) % slides.length);
+        }, 4000);
+      }
+    }
+
+    /* ── Click event for Read buttons ── */
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('.read-more');
       if (!link) return;
       e.preventDefault();
-      const post = posts[+link.dataset.idx];
+      const idx = link.getAttribute('data-idx');
+      const post = posts[parseInt(idx)];
+      if (!post) return;
 
-      clearInterval(slideTimer);
+      if (window.slideTimer) clearInterval(window.slideTimer);
       buildSlideshow(post.hero);
 
       modalTag.textContent = post.tag;
@@ -552,15 +555,15 @@ function buildSlideshow(heroData) {
       document.body.style.overflow = 'hidden';
     });
 
-    document.getElementById('modal-close').addEventListener('click', () => {
-      clearInterval(slideTimer);
+    document.getElementById('modal-close').addEventListener('click', function() {
+      if (window.slideTimer) clearInterval(window.slideTimer);
       backdrop.classList.remove('open');
       document.body.style.overflow = '';
     });
 
-    backdrop.addEventListener('click', e => {
+    backdrop.addEventListener('click', function(e) {
       if (e.target === backdrop) {
-        clearInterval(slideTimer);
+        if (window.slideTimer) clearInterval(window.slideTimer);
         backdrop.classList.remove('open');
         document.body.style.overflow = '';
       }
