@@ -481,6 +481,45 @@
     }
     }
 
+    /* ── Modal slideshow functions ── */
+let slideTimer = null;
+
+function buildSlideshow(heroData) {
+  const modalHero = document.getElementById('modal-hero');
+  if (!modalHero) return;
+  
+  modalHero.innerHTML = '';
+  const slides = Array.isArray(heroData) ? heroData.filter(s => s && s.trim() !== '') : [];
+  
+  if (slides.length === 0) {
+    modalHero.innerHTML = '<div class="hero-placeholder">📸 Add hero images in the "hero" array</div>';
+    return;
+  }
+  
+  slides.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+    slide.style.backgroundImage = `url('${src}')`;
+    modalHero.appendChild(slide);
+  });
+  
+  if (slides.length > 1) {
+    let currentModalSlide = 0;
+    const modalSlides = modalHero.querySelectorAll('.hero-slide');
+    
+    function goToModalSlide(n) {
+      modalSlides[currentModalSlide].classList.remove('active');
+      currentModalSlide = n;
+      modalSlides[currentModalSlide].classList.add('active');
+    }
+    
+    if (slideTimer) clearInterval(slideTimer);
+    slideTimer = setInterval(() => {
+      goToModalSlide((currentModalSlide + 1) % slides.length);
+    }, 4000);
+  }
+}
+
     document.addEventListener('click', e => {
       const link = e.target.closest('[data-idx]');
       if (!link) return;
