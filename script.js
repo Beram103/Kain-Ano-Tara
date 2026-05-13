@@ -556,8 +556,7 @@
     });
 
     document.getElementById('modal-close').addEventListener('click', function() {
-      if (window.slideTimer) clearInterval(windo
-        w.slideTimer);
+      if (window.slideTimer) clearInterval(window.slideTimer);
       backdrop.classList.remove('open');
       document.body.style.overflow = '';
     });
