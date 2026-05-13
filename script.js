@@ -45,10 +45,9 @@
            Format: "your-photo-url-here",
         ══════════════════════════════════════════ */
         hero: [
-          /* SLIDE 1 — e.g. overall cover shot of the food spots */ "pics/garlic1.jpg",
-          /* SLIDE 2 — e.g. close-up of food                    */ "pics/garlic2.jpg",
-          /* SLIDE 3 — e.g. the street / place ambiance         */ "pics/garlic3.jpg",
-        //   /* ▼ OPTIONAL SLIDE 4 — delete this line to remove    */ "",
+            /* SLIDE 1 — e.g. overall cover shot of the food spots */ "pics/garlic1.jpg",
+            /* SLIDE 2 — e.g. close-up of food                    */ "pics/garlic2.jpg",
+            /* SLIDE 3 — e.g. the street / place ambiance         */ "pics/garlic3.jpg",
         ],
 
         content: `
@@ -190,11 +189,10 @@
         // ],
 
         hero: [
-            "pics/jmall-foodcourt1.jpg",
-            "pics/5g1.jpg",
-            "pics/5g3.jpg",
-            "pics/5g4.jpg",
-            "pics/5g6.jpg",
+            /* SLIDE 1 — e.g. SM J Mall Food Court interior / food  */ "pics/jmall1.jpg",
+            /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "pics/brgysoul1.jpg",
+            /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "pics/5g1.jpg",
+            /* SLIDE 4 — e.g. extra image                           */ "pics/5g3.jpg",
         ],
 
         content: `
@@ -308,7 +306,7 @@
           <p>So the next time you're wondering where to go after class — skip the stress, follow the list, and eat well. You deserve it. 🍛😄</p>
         `
       },
-            {
+     {
         tag: "Lami pa, Dali pa ⚡",
         title: "Lami pa, Dali pa: Fast, filling, and actually good.",
         excerpt: "Back-to-back afternoon classes? No problem. This post is for students with tight schedules who still want a real, satisfying lunch without the long wait.",
@@ -324,10 +322,10 @@
            ▸ TO REMOVE a slide: delete that line entirely.
         ══════════════════════════════════════════ */
         hero: [
-          /* SLIDE 1 — e.g. 24 Chicken / Korean fried chicken */ "pics/24chicken.jpg",
-          /* SLIDE 2 — e.g. Mildson home-style meal */ "pics/mildson.jpg",
-          /* SLIDE 3 — e.g. Garlic Rice sizzling plate */ "pics/garlicrice.jpg",
-          /* SLIDE 4 — e.g. BOK chicken box */ "pics/bok.jpg",
+            /* SLIDE 1 — e.g. 24 Chicken / Korean fried chicken */ "pics/24chicken1.jpg",
+            /* SLIDE 2 — e.g. Mildson home-style meal */ "pics/mldson6.jpg",
+            /* SLIDE 3 — e.g. Garlic Rice sizzling plate */ "pics/garlic-rice.jpg",
+            /* SLIDE 4 — e.g. BOK chicken box */ "pics/5g6.jpg",
         ],
 
         /* ✍️ Full blog post content */
