@@ -308,12 +308,13 @@
           <p>So the next time you're wondering where to go after class — skip the stress, follow the list, and eat well. You deserve it. 🍛😄</p>
         `
       },
-      {
+      
+            {
         tag: "Lami pa, Dali pa ⚡",
         title: "Lami pa, Dali pa: Fast, filling, and actually good.",
         excerpt: "Back-to-back afternoon classes? No problem. This post is for students with tight schedules who still want a real, satisfying lunch without the long wait.",
         author: "Hinoguin",
-        date: "Coming Soon",
+        date: "May 14, 2026",
 
         /* 📸 Replace with your actual thumbnail photo URL */
         thumb: "",
@@ -324,18 +325,76 @@
            ▸ TO REMOVE a slide: delete that line entirely.
         ══════════════════════════════════════════ */
         hero: [
-          /* SLIDE 1 — e.g. fast food / quick serve shot     */ "",
-          /* SLIDE 2 — e.g. food ready to eat / your order   */ "",
-          /* SLIDE 3 — e.g. the place / stall exterior       */ "",
-          /* ▼ OPTIONAL SLIDE 4 — delete this line to remove */ "",
+          /* SLIDE 1 — e.g. 24 Chicken / Korean fried chicken */ "pics/24chicken.jpg",
+          /* SLIDE 2 — e.g. Mildson home-style meal */ "pics/mildson.jpg",
+          /* SLIDE 3 — e.g. Garlic Rice sizzling plate */ "pics/garlicrice.jpg",
+          /* SLIDE 4 — e.g. BOK chicken box */ "pics/bok.jpg",
         ],
 
         /* ✍️ Full blog post content */
         content: `
-          <p>[ ✍️ Write the full Lami pa, Dali pa post here! Focus on waiting time, prep speed, accessibility during peak hours, and the best fast-serve spots near USC TC. ]</p>
+          <p><em>Written by <strong>Hinoguin</strong></em></p>
 
-          <!-- 📸 Add a photo of the food here:
-               <img src="your-photo.jpg" alt="Food name" /> -->
+          <p><strong>LAMI PA, DALI PA: QUICK EATS</strong></p>
+
+          <p><em>Exploring local flavors and reliable favorites</em></p>
+
+          <p>When the craving for something satisfying hits, you don't always need a fancy reservation. Sometimes, the best experiences are found in those familiar spots that deliver exactly what they promise: <strong>"Lami pa, dali pa"</strong> (Delicious and fast). This week, I revisited some comfort food staples that never seem to fail.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 24 CHICKEN & MILDSON PHOTOS (2 photos side by side)
+          ▸ Replace the src="" with your actual photo file or URL.
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid">
+            <div class="photo-slot">
+              <img src="pics/24chicken.jpg" alt="24 Chicken" />
+              <span class="photo-slot-label">📷 24 CHICKEN — Korean fried chicken<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <img src="pics/mildson.jpg" alt="Mildson" />
+              <span class="photo-slot-label">📷 MILDSON — Home-style meal<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍗 1. 24 Chicken</h3>
+          <p>A true champion of affordable Korean-style fried chicken. Whether you're opting for the Jack Daniels sauce or the Yangnyeom, the quality remains consistent. The chicken stays incredibly crunchy even after being tossed in sauce, and the generous portions of garlic toppings on some flavors provide that extra punch that makes it so addictive. It's the ultimate go-to for late-night study sessions or a quick group meal.</p>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍛 2. Mildson (The Return)</h3>
+          <p>There is something undeniably nostalgic and comforting about Mildson. It's the kind of place where you know exactly what you're getting: a well-balanced plate with that home-cooked feel. Returning here feels like a warm hug. The combination of savory fried components with fresh sides served on those classic green plates is a simple pleasure that reminds us that food doesn't have to be complicated to be great.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 GARLIC RICE, SIZZLING, & BOK PHOTOS (3 photos in a row)
+          ▸ Replace the src="" with your actual photo file or URL.
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid grid-3">
+            <div class="photo-slot">
+              <img src="pics/garlicrice.jpg" alt="Garlic Rice" />
+              <span class="photo-slot-label">📷 GARLIC RICE — Sizzling plate<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <img src="pics/sizzling.jpg" alt="Sizzling Plate" />
+              <span class="photo-slot-label">📷 SIZZLING PLATE — Hot and savory<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <img src="pics/bok.jpg" alt="BOK Chicken" />
+              <span class="photo-slot-label">📷 BOK — Chicken box<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍚 3. The Garlic Rice Staple</h3>
+          <p>Can we talk about the power of a perfect Sizzling Plate? There is nothing quite like the sound of a hot plate arriving at your table, topped with a mountain of garlic rice and a perfectly fried egg. The savory, slightly charred bits of meat mixed with the fragrance of toasted garlic is a sensory experience. It's a filling, reliable meal that hits the spot every single time.</p>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍗 4. BOK</h3>
+          <p>Rounding out the list is BOK. Stepping into the vibrant, yellow-themed interior immediately sets a fun tone. Their chicken boxes and fries are the definition of "comfort in a box." The fries are perfectly seasoned, and the atmosphere makes it a great spot for a quick catch-up with friends while enjoying some seriously flavorful wings.</p>
+
+          <blockquote>"Good food doesn't always have to be a slow affair. These spots prove that speed and flavor can go hand-in-hand."</blockquote>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-accent);">📋 Final Thoughts</h3>
+          <p>Whether you're running between classes, need a late-night study fuel, or just want something fast that doesn't sacrifice taste, these spots have you covered. 24 Chicken for the crunch, Mildson for the nostalgia, Garlic Rice for the sizzle, and BOK for the vibe. Lami pa, dali pa — no compromises. ⚡🍗</p>
         `
       },
 
@@ -556,7 +615,8 @@
     });
 
     document.getElementById('modal-close').addEventListener('click', function() {
-      if (window.slideTimer) clearInterval(window.slideTimer);
+      if (window.slideTimer) clearInterval(windo
+        w.slideTimer);
       backdrop.classList.remove('open');
       document.body.style.overflow = '';
     });
