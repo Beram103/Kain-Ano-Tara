@@ -966,7 +966,20 @@
            Built dynamically from each post's "hero" array in the JS below.
            To add images: put URLs in the hero: [ ... ] array of a post.
       ══════════════════════════════════════════ -->
-      <div class="modal-hero" id="modal-hero">📷 Add a hero image in the post data</div>
+      <div class="modal-hero" id="modal-hero">
+                  <div class="hero-slide active"
+               style="background-image:url('pics/brgyseoul2.jpg')">
+          </div>
+        
+          <div class="hero-slide"
+               style="background-image:url('pics/brgyseoul2.jpg')">
+          </div>
+        
+          <div class="hero-slide"
+               style="background-image:url('pics/brgyseoul2.jpg')">
+          </div>
+
+      </div>
       <div class="modal-body">
         <div class="modal-tag-row"><span class="card-tag" id="modal-tag"></span></div>
         <h2 class="modal-title" id="modal-title"></h2>
@@ -1155,8 +1168,8 @@
         ══════════════════════════════════════════ */
         hero: [
           /* SLIDE 1 — e.g. SM J Mall Food Court interior / food  */ "jmall-foodcourt1.jpg",
-          /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "",
-          /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "",
+          /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "pics/brgyseoul1.jpg",
+          /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "pics/5g6.jpg",
           /* ▼ OPTIONAL SLIDE 4 — delete this line to remove      */ "",
         ],
 
@@ -1203,12 +1216,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- BARANGAY SEOUL PHOTO 1 — e.g. Korean lunch meal / food -->
-              <img src="" alt="Barangay Seoul food" />
+              <img src="pics/brgyseoul2.jpg" alt="Barangay Seoul food" />
               <span class="photo-slot-label">📷 BARANGAY SEOUL — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- BARANGAY SEOUL PHOTO 2 — e.g. restaurant interior / signage -->
-              <img src="" alt="Barangay Seoul place" />
+              <img src="pics/brgyseoul3.jpg" alt="Barangay Seoul place" />
               <span class="photo-slot-label">📷 BARANGAY SEOUL — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -1226,18 +1239,18 @@
           <div class="photo-grid grid-3">
             <div class="photo-slot">
               <!-- 5G COFFEE PHOTO 1 — e.g. iced coffee / drinks -->
-              <img src="" alt="5G Coffee drink" />
+              <img src="pics/5g1.jpg" alt="5G Coffee drink" />
               <span class="photo-slot-label">📷 5G COFFEE — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- 5G COFFEE PHOTO 2 — e.g. food order / light meal -->
-              <img src="" alt="5G Coffee food" />
+              <img src="pics/5g3.jpg" alt="5G Coffee food" />
               <span class="photo-slot-label">📷 5G COFFEE — Photo 2<br>Replace src="" with your photo</span>
             </div>
             <!-- ▼ OPTIONAL 3RD PHOTO — delete this block to go back to 2 photos -->
             <div class="photo-slot">
               <!-- 5G COFFEE PHOTO 3 — e.g. the cafe interior / ambiance -->
-              <img src="" alt="5G Coffee house interior" />
+              <img src="pics/5g4.jpg" alt="5G Coffee house interior" />
               <span class="photo-slot-label">📷 5G COFFEE — Photo 3<br>Replace src="" with your photo</span>
             </div>
           </div>
