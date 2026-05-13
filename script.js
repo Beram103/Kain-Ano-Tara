@@ -18,6 +18,15 @@
        To ADD a new post: copy one object, paste it inside the array, and fill it in.
        To REMOVE a post: delete the object.
     ══════════════════════════════════════════════════════ */
+
+    /* ── Global variables for modal ── */
+    const backdrop = document.getElementById('modal-backdrop');
+    const modalTag = document.getElementById('modal-tag');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMeta = document.getElementById('modal-meta');
+    const modalContent = document.getElementById('modal-content');
+    let slideTimer = null;
+
     const posts = [
       {
         tag: "Sulit Ba? 💸",
@@ -554,6 +563,45 @@ function buildSlideshow(heroData) {
     backdrop.addEventListener('click', e => {
       if (e.target === backdrop) {
         clearInterval(slideTimer);
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+        /* ── Modal slideshow functions ── */
+    function buildSlideshow(heroData) {
+      const modalHero = document.getElementById('modal-hero');
+      if (!modalHero) return;
+      // ... rest of your function
+    }
+
+    /* ── Click event for Read buttons ── */
+    document.addEventListener('click', e => {
+      const link = e.target.closest('[data-idx]');
+      if (!link) return;
+      e.preventDefault();
+      const post = posts[+link.dataset.idx];
+      
+      if (slideTimer) clearInterval(slideTimer);
+      buildSlideshow(post.hero);
+      
+      modalTag.textContent = post.tag;
+      modalTitle.textContent = post.title;
+      modalMeta.textContent = `By ${post.author} · ${post.date}`;
+      modalContent.innerHTML = post.content;
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('modal-close').addEventListener('click', () => {
+      if (slideTimer) clearInterval(slideTimer);
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    backdrop.addEventListener('click', e => {
+      if (e.target === backdrop) {
+        if (slideTimer) clearInterval(slideTimer);
         backdrop.classList.remove('open');
         document.body.style.overflow = '';
       }
