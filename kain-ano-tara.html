@@ -486,12 +486,13 @@
 
     /* ══════════════════════════════════════════
        📸 TEAM MEMBER PHOTOS
-       Replace .member-photo background-image with
-       each member's actual photo URL or local file.
-       Recommended: 100×100px square / circular crop
+       Each .member-photo circle shows the initial by default.
+       When you add a real photo (see HTML below), the image
+       fills the circle and the initial letter hides automatically.
+       Recommended: square photo, any size (it crops to a circle).
     ══════════════════════════════════════════ */
     .member-photo {
-      width: 48px; height: 48px;
+      width: 56px; height: 56px;
       border-radius: 50%;
       background: var(--color-primary);
       background-size: cover;
@@ -502,7 +503,24 @@
       font-weight: 800;
       font-size: 1.1rem;
       color: var(--color-bg);
+      overflow: hidden;
+      position: relative;
+      border: 2px solid var(--color-border);
+      transition: border-color 0.2s;
     }
+
+    .team-card:hover .member-photo { border-color: var(--color-primary); }
+
+    /* The actual <img> inside .member-photo */
+    .member-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Hide the initial letter once a real photo is present */
+    .member-photo img ~ .member-initial { display: none; }
 
     .member-name {
       font-weight: 700;
@@ -849,35 +867,80 @@
         <p class="about-label" style="margin-bottom: 1rem;">The Team</p>
         <div class="team-grid">
           <!-- ══════════════════════════════════════════
-               👤 TEAM MEMBERS
-               Add each member here. Replace the initials
-               with a photo by adding:
-               style="background-image: url('member-photo.jpg')"
-               to the .member-photo div.
+               👤 TEAM MEMBER PHOTOS
+               HOW TO ADD YOUR PHOTO:
+               1. Find your team-card below (labeled with your name).
+               2. Inside <div class="member-photo">, add this line:
+                  <img src="your-photo.jpg" alt="Your Name" />
+               3. The circle will automatically show your photo
+                  and hide the initial letter.
+               Photo tip: use a square crop for best results.
+               Any format works: .jpg, .png, .webp, or a URL.
           ══════════════════════════════════════════ -->
+
+          <!-- ─── TEAM MEMBER: APALE ─────────────────── -->
           <div class="team-card">
-            <div class="member-photo">A</div>
+            <div class="member-photo" style="background: var(--color-primary);">
+              <!--
+                📸 APALE'S PHOTO
+                ▸ TO ADD: replace the line below with your photo file
+                  Example: <img src="apale.jpg" alt="Apale" />
+                ▸ TO REMOVE: delete the <img> line and the letter initial shows again
+              -->
+              <!-- <img src="" alt="Apale" /> -->
+              <span class="member-initial">A</span>
+            </div>
             <div>
               <div class="member-name">Apale</div>
               <div class="member-role">Writer / Editor</div>
             </div>
           </div>
+
+          <!-- ─── TEAM MEMBER: BALLESTEROS ──────────── -->
           <div class="team-card">
-            <div class="member-photo" style="background: var(--color-secondary);">B</div>
+            <div class="member-photo" style="background: var(--color-secondary);">
+              <!--
+                📸 BALLESTEROS'S PHOTO
+                ▸ TO ADD: <img src="ballesteros.jpg" alt="Ballesteros" />
+                ▸ TO REMOVE: delete the <img> line
+              -->
+              <!-- <img src="" alt="Ballesteros" /> -->
+              <span class="member-initial">B</span>
+            </div>
             <div>
               <div class="member-name">Ballesteros</div>
               <div class="member-role">Writer / Visual Curator</div>
             </div>
           </div>
+
+          <!-- ─── TEAM MEMBER: HINOGUIN ─────────────── -->
           <div class="team-card">
-            <div class="member-photo" style="background: #c17b2b;">H</div>
+            <div class="member-photo" style="background: #c17b2b;">
+              <!--
+                📸 HINOGUIN'S PHOTO
+                ▸ TO ADD: <img src="hinoguin.jpg" alt="Hinoguin" />
+                ▸ TO REMOVE: delete the <img> line
+              -->
+              <!-- <img src="" alt="Hinoguin" /> -->
+              <span class="member-initial">H</span>
+            </div>
             <div>
               <div class="member-name">Hinoguin</div>
               <div class="member-role">Writer / Editor</div>
             </div>
           </div>
+
+          <!-- ─── TEAM MEMBER: POMOY ────────────────── -->
           <div class="team-card">
-            <div class="member-photo" style="background: #5a8a3a;">P</div>
+            <div class="member-photo" style="background: #5a8a3a;">
+              <!--
+                📸 POMOY'S PHOTO
+                ▸ TO ADD: <img src="pomoy.jpg" alt="Pomoy" />
+                ▸ TO REMOVE: delete the <img> line
+              -->
+              <!-- <img src="" alt="Pomoy" /> -->
+              <span class="member-initial">P</span>
+            </div>
             <div>
               <div class="member-name">Pomoy</div>
               <div class="member-role">Writer / Visual Curator</div>
