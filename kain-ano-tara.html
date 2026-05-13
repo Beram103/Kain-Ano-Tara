@@ -540,22 +540,64 @@
     }
 
     /* ══════════════════════════════════════════
-       📸 MODAL HERO IMAGE (inside blog post view)
-       Each post can have its own hero image.
-       Set .modal-hero background-image via JS or inline style.
+       📸 MODAL HERO SLIDESHOW
+       The hero area is now a full image slideshow.
+       Add your photos to the "hero" array in each post object.
     ══════════════════════════════════════════ */
     .modal-hero {
       width: 100%;
       aspect-ratio: 16/7;
       background: var(--color-surface2);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute; inset: 0;
       background-size: cover;
       background-position: center;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      display: flex;
-      align-items: center; justify-content: center;
-      color: var(--color-muted);
-      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.7s ease;
     }
+
+    .hero-slide.active { opacity: 1; }
+
+    .hero-placeholder {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-muted); font-size: 0.85rem;
+    }
+
+    .hero-dots {
+      position: absolute; bottom: 12px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 7px; z-index: 5;
+    }
+
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer; border: none;
+      transition: background 0.25s, transform 0.25s;
+      padding: 0;
+    }
+
+    .hero-dot.active { background: var(--color-primary); transform: scale(1.3); }
+
+    .hero-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(26,18,8,0.6); border: 1px solid var(--color-border);
+      color: var(--color-text); font-size: 1.1rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 5;
+      transition: background 0.2s;
+    }
+
+    .hero-arrow:hover { background: rgba(244,160,19,0.7); }
+    .hero-arrow.prev { left: 12px; }
+    .hero-arrow.next { right: 12px; }
 
     .modal-body { padding: 2rem; }
 
@@ -595,6 +637,54 @@
       border-radius: var(--radius-md);
       margin: 1.5rem 0;
       border: 1px solid var(--color-border);
+    }
+
+    /* ══════════════════════════════════════════
+       📸 IN-CONTENT PHOTO GRID
+       .photo-grid wraps 2–4 photos inside a post.
+       Photos sit side by side; on mobile they stack.
+    ══════════════════════════════════════════ */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .photo-grid.grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .photo-grid.grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+    .photo-slot {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--color-surface2);
+      border: 1px dashed var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .photo-slot img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      margin: 0; border: none;
+    }
+
+    .photo-slot-label {
+      font-size: 0.7rem;
+      color: var(--color-muted);
+      text-align: center;
+      padding: 0.5rem;
+      line-height: 1.4;
+      pointer-events: none;
+    }
+
+    @media (max-width: 560px) {
+      .photo-grid, .photo-grid.grid-3, .photo-grid.grid-4 {
+        grid-template-columns: 1fr;
+      }
     }
 
     .modal-content blockquote {
@@ -809,9 +899,9 @@
   <div class="modal-backdrop" id="modal-backdrop">
     <div class="modal" id="modal">
       <!-- ══════════════════════════════════════════
-           📸 MODAL HERO IMAGE
-           This is set dynamically from the post's "hero" field in the posts[] array.
-           To add a hero image to a post, set the "hero" field to an image URL.
+           📸 MODAL HERO SLIDESHOW
+           Built dynamically from each post's "hero" array in the JS below.
+           To add images: put URLs in the hero: [ ... ] array of a post.
       ══════════════════════════════════════════ -->
       <div class="modal-hero" id="modal-hero">📷 Add a hero image in the post data</div>
       <div class="modal-body">
@@ -852,46 +942,270 @@
         excerpt: "Mahal ba ni, o muabot pa sa akong budget? One student, one budget, a full afternoon of classes — we check if the meals near USC Talamban are truly worth every peso.",
         author: "Apale",
         date: "May 8, 2026",
-
-        /* 📸 Replace with your actual thumbnail photo URL or local file path */
         thumb: "",
 
-        /* 📸 Replace with your actual hero/banner photo URL */
-        hero: "",
+        /* ══════════════════════════════════════════
+           📸 HERO SLIDESHOW — SULIT BA?
+           Add your photo URLs below. Each line is one slide.
+           ▸ MINIMUM: 3 slides recommended.
+           ▸ TO ADD a slide: copy one line and paste below it, change the URL.
+           ▸ TO REMOVE a slide: delete that line entirely.
+           Format: "your-photo-url-here",
+        ══════════════════════════════════════════ */
+        hero: [
+          /* SLIDE 1 — e.g. overall cover shot of the food spots */ "",
+          /* SLIDE 2 — e.g. close-up of food                    */ "",
+          /* SLIDE 3 — e.g. the street / place ambiance         */ "",
+          /* ▼ OPTIONAL SLIDE 4 — delete this line to remove    */ "",
+        ],
 
-        /* ✍️ Full blog post content — write your full post here!
-              Use <p> for paragraphs, <img src=""> for photos,
-              <blockquote> for pull quotes.                       */
         content: `
           <p>Be honest — what's the first thing that crosses your mind when lunch time hits? <em>"Mahal ba ni, o muabot pa sa akong budget?"</em> That's the question we always ask ourselves whenever we head out to eat near USC Talamban Campus.</p>
-          <blockquote>"Let's face it: one student, one budget, and a full afternoon of classes ahead — dili pwede mag-aksaya, pero lami mn sad e kaon ug mabusog gyud, diba?"</blockquote>
-          <p>That's exactly what <strong>Sulit Ba?</strong> is all about — checking whether the food near campus is truly worth every peso by looking at the taste, serving size, price, and overall value. Because at the end of the day, a meal is only sulit if it keeps you full and keeps your wallet happy.</p>
 
-          <!-- 📸 Add a photo of the food spot here:
-               <img src="your-food-photo.jpg" alt="Food name" /> -->
+          <blockquote>"One student, one budget, and a full afternoon of classes ahead — dili pwede mag-aksaya, pero lami man sad e kaon ug mabusog gyud, diba?"</blockquote>
 
-          <p>[ ✍️ Continue writing your full Sulit Ba? post here. Add your restaurant name, location, price range, ratings, and honest verdict! ]</p>
+          <p>That's exactly what <strong>Sulit Ba?</strong> is all about — checking whether the food near campus is truly worth every peso. We're judging taste, serving size, price, and overall value. A meal is only sulit if it keeps you full <em>and</em> keeps your wallet breathing. So we went out, tried them all, and here's the honest verdict.</p>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍳 1. Silogan</h3>
+          <p>There's something quietly iconic about a good silogan near campus. You walk in, the smell of garlic rice and tuyo hits you immediately, and suddenly it doesn't matter that it's only 11 AM — you're ready for a full meal. The sinangag is fragrant, the silog combination of your choice (longsilog, tapsilog, hotsilog — take your pick) comes in a generous portion, and the sunny side up egg is cooked just right. The best part? You walk out fed and full for under ₱60. Sulit kaayo. For students running on coffee and a 7 AM class, this is the breakfast-lunch combo that makes everything survivable.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 SILOGAN PHOTOS  (2 photos shown side by side)
+          ▸ Replace the src="" with your actual photo file or URL.
+          ▸ TO ADD a 3rd photo: change class to "photo-grid grid-3"
+            and copy-paste one more <div class="photo-slot"> block.
+          ▸ TO REMOVE a photo: delete one <div class="photo-slot"> block.
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid">
+            <div class="photo-slot">
+              <!-- SILOGAN PHOTO 1 — e.g. the food plate / silog combo -->
+              <img src="" alt="Silogan food" />
+              <span class="photo-slot-label">📷 SILOGAN — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- SILOGAN PHOTO 2 — e.g. the stall / place exterior -->
+              <img src="" alt="Silogan place" />
+              <span class="photo-slot-label">📷 SILOGAN — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍛 2. Mildson</h3>
+          <p>Mildson is the kind of place that doesn't need to advertise itself — the line says everything. It's a staple near Talamban, and for good reason. The carinderia-style setup means you point at what you want, they scoop, and you eat. The viand choices rotate daily, and whether you get adobo, pinakbet, or their beloved ginisang gulay, the rice is unlimited (or at least generous enough that you won't leave hungry). Budget? We're talking ₱50–₱80 for a full meal with rice. Sulit? Absolutely. It's not Instagram-worthy, but your stomach doesn't care about aesthetics.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 MILDSON PHOTOS  (2 photos shown side by side)
+          ▸ Same instructions as above.
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid">
+            <div class="photo-slot">
+              <!-- MILDSON PHOTO 1 — e.g. the viand spread / food counter -->
+              <img src="" alt="Mildson food" />
+              <span class="photo-slot-label">📷 MILDSON — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- MILDSON PHOTO 2 — e.g. the place / your plate -->
+              <img src="" alt="Mildson place" />
+              <span class="photo-slot-label">📷 MILDSON — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🏢 3. Food Court</h3>
+          <p>The food court near campus is basically a choose-your-own-adventure for budget eaters. Different stalls, different offerings — you've got your go-to fried dishes, your soup-and-rice combos, and a few wildcard options depending on the day. It's loud, it's busy during peak hours, and the seats disappear fast. But here's the thing: almost every stall offers a full meal for under ₱70, and variety is the name of the game. Sulit ba? Yes — especially if you time it right and avoid the 12 NN rush when the line stretches out the door.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 FOOD COURT PHOTOS  (2 photos shown side by side)
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid">
+            <div class="photo-slot">
+              <!-- FOOD COURT PHOTO 1 — e.g. stall overview / crowd -->
+              <img src="" alt="Food court" />
+              <span class="photo-slot-label">📷 FOOD COURT — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- FOOD COURT PHOTO 2 — e.g. your meal / a specific stall -->
+              <img src="" alt="Food court meal" />
+              <span class="photo-slot-label">📷 FOOD COURT — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍗 4. Fried Chicken sa Atbang (₱25 Chicken / Pungko-Pungko)</h3>
+          <p>Twenty-five pesos. Repeat: <strong>₱25</strong>. For a piece of fried chicken. If that doesn't make you want to cry happy tears, I don't know what will. The pungko-pungko setup across from campus is the ultimate student survival spot — low plastic stools, no frills, no aircon, and absolutely no complaints from anyone eating there. The chicken is crispy, the barbecue sticks are an easy add-on, and the whole experience of eating on the side of the road while watching jeepneys pass is oddly comforting. Sulit? This is beyond sulit. This is a gift.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 PUNGKO-PUNGKO PHOTOS  (3 photos in a row)
+          ▸ This one has 3 photos. Change to "photo-grid" (no grid-3)
+            and delete one block if you only want 2.
+          ▸ TO ADD a 4th photo: change to "photo-grid grid-4"
+            and copy one more block.
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid grid-3">
+            <div class="photo-slot">
+              <!-- PUNGKO-PUNGKO PHOTO 1 — e.g. the fried chicken up close -->
+              <img src="" alt="Pungko pungko chicken" />
+              <span class="photo-slot-label">📷 PUNGKO-PUNGKO — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- PUNGKO-PUNGKO PHOTO 2 — e.g. the stall setup / BBQ sticks -->
+              <img src="" alt="Pungko pungko stall" />
+              <span class="photo-slot-label">📷 PUNGKO-PUNGKO — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+            <!-- ▼ OPTIONAL 3RD PHOTO — delete this block to go back to 2 photos -->
+            <div class="photo-slot">
+              <!-- PUNGKO-PUNGKO PHOTO 3 — e.g. the pungko setup / stools -->
+              <img src="" alt="Pungko pungko vibe" />
+              <span class="photo-slot-label">📷 PUNGKO-PUNGKO — Photo 3<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <blockquote>"₱25 chicken, plastic stool, tambay sa kanto — this is the USC Talamban fine dining experience no one talks about but everyone loves."</blockquote>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-accent);">📋 Final Verdict: Sulit Rankings</h3>
+          <p><strong>🥇 Pungko-Pungko (₱25 Chicken)</strong> — Unmatched price-to-satisfaction ratio. The GOAT of budget eating near USC TC.<br>
+          <strong>🥈 Silogan</strong> — Warm, filling, and consistent. Your best friend on early morning class days.<br>
+          <strong>🥉 Mildson</strong> — Reliable, no-nonsense, and genuinely good home cooking. A classic for a reason.<br>
+          <strong>🏅 Food Court</strong> — Great variety and value, just come before 12 NN if you want a seat.</p>
+
+          <p>Bottom line: eating near USC Talamban doesn't have to hurt your allowance. These four spots prove that sulit and masarap can absolutely exist in the same sentence — and in the same plate. 🍽️</p>
         `
       },
       {
         tag: "Busog ug Saya 😄",
         title: "Busog ug Saya: Spots that feed your stomach AND your soul.",
         excerpt: "Good food is more than just the meal — it's the vibes, the generous servings, and the places that make you want to linger even during short lunch breaks.",
-        author: "Ballesteros",
-        date: "Coming Soon",
-
-        /* 📸 Replace with your actual thumbnail photo URL */
+        author: "Ballesteros & Pomoy",
+        date: "May 8, 2026",
         thumb: "",
 
-        /* 📸 Replace with your actual hero photo URL */
-        hero: "",
+        /* ══════════════════════════════════════════
+           📸 HERO SLIDESHOW — BUSOG UG SAYA
+           ▸ TO ADD a slide: copy one line and paste below it, change the URL.
+           ▸ TO REMOVE a slide: delete that line entirely.
+           Format: "your-photo-url-here",
+        ══════════════════════════════════════════ */
+        hero: [
+          /* SLIDE 1 — e.g. SM J Mall Food Court interior / food  */ "",
+          /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "",
+          /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "",
+          /* ▼ OPTIONAL SLIDE 4 — delete this line to remove      */ "",
+        ],
 
-        /* ✍️ Full blog post content */
         content: `
-          <p>[ ✍️ Write the full Busog ug Saya post here! Highlight the vibe, atmosphere, portion sizes, crowd favorites, and what makes this place worth coming back to. ]</p>
+          <p><em>Written by <strong>Ballesteros</strong> &amp; <strong>Pomoy</strong></em></p>
 
-          <!-- 📸 Add a photo of the restaurant here:
-               <img src="your-photo.jpg" alt="Restaurant name" /> -->
+          <p>Some meals fill your stomach. But the best ones? They fill something else entirely — the part of you that needs a breather between back-to-back classes, a moment to laugh with friends, or just a warm plate of something good after a long, draining day. That's what <strong>Busog ug Saya</strong> is all about: finding the spots near USC Talamban that don't just feed you, but actually make the whole lunch break feel worth it.</p>
+
+          <blockquote>"Hindi lang busog ang hinahanap namin. Saya rin. Yung tipong kain ka, tapos gusto mo pa bumalik bukas." — Pomoy</blockquote>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🛍️ 1. SM J Mall Food Court</h3>
+          <p><em>— Ballesteros writes:</em> The SM J Mall Food Court is where variety meets vibes. It's air-conditioned (blessings), it's spacious (on a good day), and it's got enough options that even the most indecisive person in your barkada can finally make a decision within five minutes. Whether you're craving a full Filipino rice meal, something Korean, or just a cold drink to survive the Cebu heat, this place has it. It gets busog points for portion sizes that won't leave you hungry by 3 PM, and saya points for being one of the few spots near campus where you can actually sit, chill, and eat without rushing.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 SM J MALL FOOD COURT PHOTOS  (2 photos side by side)
+          ▸ Replace src="" with your actual photo file or URL.
+          ▸ TO ADD a 3rd photo: change class to "photo-grid grid-3"
+            and copy-paste one more <div class="photo-slot"> block.
+          ▸ TO REMOVE a photo: delete one <div class="photo-slot"> block.
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid">
+            <div class="photo-slot">
+              <!-- SM J MALL PHOTO 1 — e.g. food court interior / crowd -->
+              <img src="" alt="SM J Mall Food Court" />
+              <span class="photo-slot-label">📷 SM J MALL — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- SM J MALL PHOTO 2 — e.g. your meal / stall variety -->
+              <img src="" alt="SM J Mall meal" />
+              <span class="photo-slot-label">📷 SM J MALL — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🇰🇷 2. Barangay Seoul</h3>
+          <p><em>— Pomoy writes:</em> Okay, let me be real with you — the moment I walked into Barangay Seoul, I felt something shift. Maybe it was the K-pop playing softly in the background, maybe it was the smell of bulgogi and garlic, or maybe I just really needed Korean food that day. Whatever it was, this place delivers. The rice bowls are generous, the flavors are balanced — not too sweet, not too salty — and the overall experience just feels elevated without being pretentious. For a spot near Talamban, it genuinely surprises you. Busog? Yes. Saya? Absolutely.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 BARANGAY SEOUL PHOTOS  (2 photos side by side)
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid">
+            <div class="photo-slot">
+              <!-- BARANGAY SEOUL PHOTO 1 — e.g. Korean rice bowl / food -->
+              <img src="" alt="Barangay Seoul food" />
+              <span class="photo-slot-label">📷 BARANGAY SEOUL — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- BARANGAY SEOUL PHOTO 2 — e.g. restaurant interior / signage -->
+              <img src="" alt="Barangay Seoul place" />
+              <span class="photo-slot-label">📷 BARANGAY SEOUL — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">☕ 3. 5G Coffee House</h3>
+          <p><em>— Ballesteros writes:</em> This one's a little different, and that's exactly why it earns its spot on this list. 5G Coffee House is the kind of place you go when you need more than just food — you need an atmosphere reset. The coffee is good (and affordable enough that it won't haunt your weekly budget), the food options are satisfying, and there's a calmness to the space that feels rare near a campus area. Whether you're doing last-minute readings before class or decompressing after a brutal exam, 5G gives you the saya that no amount of stress-eating can replicate. Pairing: iced coffee + a light meal = surviving the semester, one cup at a time.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 5G COFFEE HOUSE PHOTOS  (3 photos in a row)
+          ▸ 3 photos here — change to "photo-grid" (remove grid-3)
+            and delete one block if you only want 2.
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid grid-3">
+            <div class="photo-slot">
+              <!-- 5G COFFEE PHOTO 1 — e.g. iced coffee / drinks -->
+              <img src="" alt="5G Coffee drink" />
+              <span class="photo-slot-label">📷 5G COFFEE — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- 5G COFFEE PHOTO 2 — e.g. food order / light meal -->
+              <img src="" alt="5G Coffee food" />
+              <span class="photo-slot-label">📷 5G COFFEE — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+            <!-- ▼ OPTIONAL 3RD PHOTO — delete this block to go back to 2 photos -->
+            <div class="photo-slot">
+              <!-- 5G COFFEE PHOTO 3 — e.g. the cafe interior / ambiance -->
+              <img src="" alt="5G Coffee house interior" />
+              <span class="photo-slot-label">📷 5G COFFEE — Photo 3<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-primary);">🍽️ 4. Trillis</h3>
+          <p><em>— Pomoy writes:</em> Trillis is the one that snuck up on me. I wasn't expecting much — it looks unassuming from the outside — but then the food arrived and suddenly I understood the hype. The portions here are generous in the way that makes you feel genuinely taken care of. It's the kind of meal that hits different after a Monday full of lectures and requirements. The menu leans Filipino comfort food, and it does it well — no gimmicks, just good cooking. My personal vote for the most "busog ug saya" spot on this list. You leave full, happy, and already planning your next visit.</p>
+
+          <!--
+          ════════════════════════════════════════════
+          📸 TRILLIS PHOTOS  (2 photos side by side)
+          ════════════════════════════════════════════
+          -->
+          <div class="photo-grid">
+            <div class="photo-slot">
+              <!-- TRILLIS PHOTO 1 — e.g. food plating / main dish -->
+              <img src="" alt="Trillis food" />
+              <span class="photo-slot-label">📷 TRILLIS — Photo 1<br>Replace src="" with your photo</span>
+            </div>
+            <div class="photo-slot">
+              <!-- TRILLIS PHOTO 2 — e.g. restaurant exterior / place vibe -->
+              <img src="" alt="Trillis place" />
+              <span class="photo-slot-label">📷 TRILLIS — Photo 2<br>Replace src="" with your photo</span>
+            </div>
+          </div>
+
+          <blockquote>"Trillis is the hug in food form that USC students didn't know they needed." — Pomoy</blockquote>
+
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;margin:1.5rem 0 0.5rem;color:var(--color-accent);">✨ Our Joint Verdict</h3>
+          <p>Between the two of us, we sampled, debated, and yes — overate — so you'd have a proper guide. Every spot on this list earned its place not just because the food is good, but because of how it made us feel. Busog ug saya isn't just a mood; it's a standard. And these four places near USC Talamban meet it.</p>
+
+          <p>So the next time you're wondering where to go after class — skip the stress, follow the list, and eat well. You deserve it. 🍛😄</p>
         `
       },
       {
@@ -904,8 +1218,17 @@
         /* 📸 Replace with your actual thumbnail photo URL */
         thumb: "",
 
-        /* 📸 Replace with your actual hero photo URL */
-        hero: "",
+        /* ══════════════════════════════════════════
+           📸 HERO SLIDESHOW — LAMI PA, DALI PA
+           ▸ TO ADD a slide: copy one line and paste below it, change the URL.
+           ▸ TO REMOVE a slide: delete that line entirely.
+        ══════════════════════════════════════════ */
+        hero: [
+          /* SLIDE 1 — e.g. fast food / quick serve shot     */ "",
+          /* SLIDE 2 — e.g. food ready to eat / your order   */ "",
+          /* SLIDE 3 — e.g. the place / stall exterior       */ "",
+          /* ▼ OPTIONAL SLIDE 4 — delete this line to remove */ "",
+        ],
 
         /* ✍️ Full blog post content */
         content: `
@@ -966,21 +1289,83 @@
     const modalMeta = document.getElementById('modal-meta');
     const modalContent = document.getElementById('modal-content');
 
+    let slideTimer = null;
+
+    function buildSlideshow(heroData) {
+      modalHero.innerHTML = '';
+      // Normalize: hero can be a string (legacy) or an array
+      const slides = Array.isArray(heroData)
+        ? heroData.filter(s => s && s.trim() !== '')
+        : (heroData ? [heroData] : []);
+
+      if (slides.length === 0) {
+        modalHero.innerHTML = '<div class="hero-placeholder">📸 Add hero photos in the post\'s "hero" array</div>';
+        return;
+      }
+
+      // Build slide divs
+      slides.forEach((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        div.style.backgroundImage = `url('${src}')`;
+        modalHero.appendChild(div);
+      });
+
+      if (slides.length === 1) return; // no controls needed for single image
+
+      // Dots
+      const dotsEl = document.createElement('div');
+      dotsEl.className = 'hero-dots';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsEl.appendChild(dot);
+      });
+      modalHero.appendChild(dotsEl);
+
+      // Arrows
+      const prev = document.createElement('button');
+      prev.className = 'hero-arrow prev'; prev.innerHTML = '‹';
+      prev.addEventListener('click', () => goToSlide((currentSlide - 1 + slides.length) % slides.length));
+      modalHero.appendChild(prev);
+
+      const next = document.createElement('button');
+      next.className = 'hero-arrow next'; next.innerHTML = '›';
+      next.addEventListener('click', () => goToSlide((currentSlide + 1) % slides.length));
+      modalHero.appendChild(next);
+
+      let currentSlide = 0;
+
+      function goToSlide(n) {
+        const allSlides = modalHero.querySelectorAll('.hero-slide');
+        const allDots = modalHero.querySelectorAll('.hero-dot');
+        allSlides[currentSlide].classList.remove('active');
+        allDots[currentSlide].classList.remove('active');
+        currentSlide = n;
+        allSlides[currentSlide].classList.add('active');
+        allDots[currentSlide].classList.add('active');
+        resetTimer();
+      }
+
+      function resetTimer() {
+        clearInterval(slideTimer);
+        slideTimer = setInterval(() => {
+          goToSlide((currentSlide + 1) % slides.length);
+        }, 4000);
+      }
+
+      resetTimer();
+    }
+
     document.addEventListener('click', e => {
       const link = e.target.closest('[data-idx]');
       if (!link) return;
       e.preventDefault();
       const post = posts[+link.dataset.idx];
 
-      /* Set hero image or placeholder */
-      if (post.hero) {
-        modalHero.style.backgroundImage = `url('${post.hero}')`;
-        modalHero.style.backgroundSize = 'cover';
-        modalHero.innerHTML = '';
-      } else {
-        modalHero.style.backgroundImage = 'none';
-        modalHero.innerHTML = '📸 Add a hero image in the post\'s "hero" field';
-      }
+      clearInterval(slideTimer);
+      buildSlideshow(post.hero);
 
       modalTag.textContent = post.tag;
       modalTitle.textContent = post.title;
@@ -991,12 +1376,14 @@
     });
 
     document.getElementById('modal-close').addEventListener('click', () => {
+      clearInterval(slideTimer);
       backdrop.classList.remove('open');
       document.body.style.overflow = '';
     });
 
     backdrop.addEventListener('click', e => {
       if (e.target === backdrop) {
+        clearInterval(slideTimer);
         backdrop.classList.remove('open');
         document.body.style.overflow = '';
       }
