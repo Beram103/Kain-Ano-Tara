@@ -804,3 +804,71 @@
       .team-grid { grid-template-columns: 1fr; }
       .hero-cta { flex-direction: column; align-items: center; }
     }
+
+    /* ─────────────────────────────────────────
+   CARD SLIDESHOW (automatic images inside each post card)
+   ───────────────────────────────────────── */
+.card-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-slideshow-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.card-slide.active {
+  opacity: 1;
+}
+
+.card-slideshow-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+
+.card-slide-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.card-slide-dot.active {
+  background: var(--color-primary);
+  transform: scale(1.2);
+}
+
+.card-thumb .card-tag {
+  position: relative;
+  z-index: 6;
+  display: inline-block;
+}

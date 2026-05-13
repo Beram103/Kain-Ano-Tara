@@ -36,9 +36,9 @@
            Format: "your-photo-url-here",
         ══════════════════════════════════════════ */
         hero: [
-          /* SLIDE 1 — e.g. overall cover shot of the food spots */ "",
-          /* SLIDE 2 — e.g. close-up of food                    */ "",
-          /* SLIDE 3 — e.g. the street / place ambiance         */ "",
+          /* SLIDE 1 — e.g. overall cover shot of the food spots */ "garlic1.jpg",
+          /* SLIDE 2 — e.g. close-up of food                    */ "garlic2.jpg",
+          /* SLIDE 3 — e.g. the street / place ambiance         */ "garlic3.jpg",
           /* ▼ OPTIONAL SLIDE 4 — delete this line to remove    */ "",
         ],
 
@@ -381,114 +381,104 @@
     })();
 
     /* ── Card rendering ── */
+    /* ── Card rendering with slideshow on each card ── */
     const grid = document.getElementById('cards-grid');
 
     posts.forEach((post, i) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="card-thumb ${post.thumb ? '' : 'no-image'}"
-             style="${post.thumb ? `background-image:url('${post.thumb}')` : ''}">
-          ${post.thumb
-            ? `<span class="card-tag">${post.tag}</span>`
-            : `<span class="placeholder-icon">🍽️</span>
-               <span class="placeholder-text">Add your food photo in the posts[] array</span>`}
+    const card = document.createElement('div');
+    card.className = 'card';
+    
+    // Get valid hero images for this specific post
+    const postHeroImages = Array.isArray(post.hero) 
+        ? post.hero.filter(s => s && s.trim() !== '') 
+        : [];
+    
+    // Build the card HTML
+    card.innerHTML = `
+        <div class="card-thumb ${postHeroImages.length === 0 ? 'no-image' : ''}" id="card-thumb-${i}">
+        ${postHeroImages.length === 0 ? `
+            <span class="placeholder-icon">🍽️</span>
+            <span class="placeholder-text">Add your food photo in the posts[] array</span>
+        ` : `
+            <div class="card-slideshow-container" id="slideshow-${i}">
+            <div class="card-slides" id="card-slides-${i}"></div>
+            <div class="card-slideshow-dots" id="card-dots-${i}"></div>
+            </div>
+            <span class="card-tag">${post.tag}</span>
+        `}
         </div>
         <div class="card-body">
-          <div class="card-meta">
+        <div class="card-meta">
             <span>${post.date}</span>
             <span class="sep">·</span>
             <span>${post.tag}</span>
-          </div>
-          <h3 class="card-title">${post.title}</h3>
-          <p class="card-excerpt">${post.excerpt}</p>
+        </div>
+        <h3 class="card-title">${post.title}</h3>
+        <p class="card-excerpt">${post.excerpt}</p>
         </div>
         <div class="card-footer">
-          <div class="author-pill">
+        <div class="author-pill">
             <div class="author-avatar">${post.author[0]}</div>
             ${post.author}
-          </div>
-          <a href="#" class="read-more" data-idx="${i}">Read →</a>
         </div>
-      `;
-      grid.appendChild(card);
+        <a href="#" class="read-more" data-idx="${i}">Read →</a>
+        </div>
+    `;
+    grid.appendChild(card);
+    
+    // If this post has hero images, create a slideshow inside its card
+    if (postHeroImages.length > 0) {
+        createCardSlideshow(i, postHeroImages);
+    }
     });
 
-    /* ── Modal logic ── */
-    const backdrop = document.getElementById('modal-backdrop');
-    const modalHero = document.getElementById('modal-hero');
-    const modalTag = document.getElementById('modal-tag');
-    const modalTitle = document.getElementById('modal-title');
-    const modalMeta = document.getElementById('modal-meta');
-    const modalContent = document.getElementById('modal-content');
-
-    let slideTimer = null;
-
-    function buildSlideshow(heroData) {
-      modalHero.innerHTML = '';
-      // Normalize: hero can be a string (legacy) or an array
-      const slides = Array.isArray(heroData)
-        ? heroData.filter(s => s && s.trim() !== '')
-        : (heroData ? [heroData] : []);
-
-      if (slides.length === 0) {
-        modalHero.innerHTML = '<div class="hero-placeholder">📸 Add hero photos in the post\'s "hero" array</div>';
-        return;
-      }
-
-      // Build slide divs
-      slides.forEach((src, i) => {
-        const div = document.createElement('div');
-        div.className = 'hero-slide' + (i === 0 ? ' active' : '');
-        div.style.backgroundImage = `url('${src}')`;
-        modalHero.appendChild(div);
-      });
-
-      if (slides.length === 1) return; // no controls needed for single image
-
-      // Dots
-      const dotsEl = document.createElement('div');
-      dotsEl.className = 'hero-dots';
-      slides.forEach((_, i) => {
+    // Function to create automatic slideshow for each card
+    function createCardSlideshow(cardIndex, images) {
+    const slidesContainer = document.getElementById(`card-slides-${cardIndex}`);
+    const dotsContainer = document.getElementById(`card-dots-${cardIndex}`);
+    
+    if (!slidesContainer) return;
+    
+    // Create slide elements
+    images.forEach((src, imgIndex) => {
+        const slide = document.createElement('div');
+        slide.className = 'card-slide' + (imgIndex === 0 ? ' active' : '');
+        slide.style.backgroundImage = `url('${src}')`;
+        slidesContainer.appendChild(slide);
+    });
+    
+    // Create dots if more than 1 image
+    if (images.length > 1) {
+        images.forEach((_, imgIndex) => {
         const dot = document.createElement('button');
-        dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsEl.appendChild(dot);
-      });
-      modalHero.appendChild(dotsEl);
-
-      // Arrows
-      const prev = document.createElement('button');
-      prev.className = 'hero-arrow prev'; prev.innerHTML = '‹';
-      prev.addEventListener('click', () => goToSlide((currentSlide - 1 + slides.length) % slides.length));
-      modalHero.appendChild(prev);
-
-      const next = document.createElement('button');
-      next.className = 'hero-arrow next'; next.innerHTML = '›';
-      next.addEventListener('click', () => goToSlide((currentSlide + 1) % slides.length));
-      modalHero.appendChild(next);
-
-      let currentSlide = 0;
-
-      function goToSlide(n) {
-        const allSlides = modalHero.querySelectorAll('.hero-slide');
-        const allDots = modalHero.querySelectorAll('.hero-dot');
-        allSlides[currentSlide].classList.remove('active');
-        allDots[currentSlide].classList.remove('active');
-        currentSlide = n;
-        allSlides[currentSlide].classList.add('active');
-        allDots[currentSlide].classList.add('active');
-        resetTimer();
-      }
-
-      function resetTimer() {
-        clearInterval(slideTimer);
-        slideTimer = setInterval(() => {
-          goToSlide((currentSlide + 1) % slides.length);
-        }, 4000);
-      }
-
-      resetTimer();
+        dot.className = 'card-slide-dot' + (imgIndex === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToCardSlide(cardIndex, imgIndex));
+        dotsContainer.appendChild(dot);
+        });
+        
+        // Auto-advance slides for this card
+        let currentCardSlide = 0;
+        
+        function goToCardSlide(cardIdx, slideIndex) {
+        const slides = document.querySelectorAll(`#card-slides-${cardIdx} .card-slide`);
+        const dots = document.querySelectorAll(`#card-dots-${cardIdx} .card-slide-dot`);
+        if (!slides.length) return;
+        
+        slides[currentCardSlide].classList.remove('active');
+        if (dots.length) dots[currentCardSlide].classList.remove('active');
+        
+        currentCardSlide = slideIndex;
+        
+        slides[currentCardSlide].classList.add('active');
+        if (dots.length) dots[currentCardSlide].classList.add('active');
+        }
+        
+        // Start auto-rotation for this card (3.5 seconds interval)
+        setInterval(() => {
+        const next = (currentCardSlide + 1) % images.length;
+        goToCardSlide(cardIndex, next);
+        }, 3500);
+    }
     }
 
     document.addEventListener('click', e => {
