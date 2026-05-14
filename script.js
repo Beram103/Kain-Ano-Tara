@@ -120,7 +120,7 @@
             </div>
             <div class="photo-slot">
               <!-- FOOD COURT PHOTO 2 — e.g. your meal / a specific stall -->
-              <img src="pics/fc.jpg" alt="Food court meal" />
+              <img src="pics/fc1.jpg" alt="Food court meal" />
               <span class="photo-slot-label">📷 FOOD COURT — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -288,7 +288,7 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- TRILLIS PHOTO 1 — e.g. food plating / main dish -->
-              <img src="" alt="Trillis food" />
+              <img src="pics/tils.jpg" alt="Trillis food" />
               <span class="photo-slot-label">📷 TRILLIS — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
