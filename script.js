@@ -346,11 +346,11 @@
           -->
           <div class="photo-grid">
             <div class="photo-slot">
-              <img src="pics/24chicken.jpg" alt="24 Chicken" />
+              <img src="pics/24c.jpg" alt="24 Chicken" />
               <span class="photo-slot-label">📷 24 CHICKEN — Korean fried chicken<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
-              <img src="pics/mildson.jpg" alt="Mildson" />
+              <img src="pics/son.jpg" alt="Mildson" />
               <span class="photo-slot-label">📷 MILDSON — Home-style meal<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -369,7 +369,7 @@
           -->
           <div class="photo-grid grid-3">
             <div class="photo-slot">
-              <img src="pics/garlicrice.jpg" alt="Garlic Rice" />
+              <img src="pics/gcrice.jpg" alt="Garlic Rice" />
               <span class="photo-slot-label">📷 GARLIC RICE — Sizzling plate<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
@@ -377,7 +377,7 @@
               <span class="photo-slot-label">📷 SIZZLING PLATE — Hot and savory<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
-              <img src="pics/bok.jpg" alt="BOK Chicken" />
+              <img src="pics/bokie.jpg" alt="BOK Chicken" />
               <span class="photo-slot-label">📷 BOK — Chicken box<br>Replace src="" with your photo</span>
             </div>
           </div>
