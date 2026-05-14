@@ -72,12 +72,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- SILOGAN PHOTO 1 — e.g. the food plate / silog combo -->
-              <img src="" alt="Silogan food" />
+              <img src="pics/silogan-ni-gian2.jpg" alt="Silogan food" />
               <span class="photo-slot-label">📷 SILOGAN — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- SILOGAN PHOTO 2 — e.g. the stall / place exterior -->
-              <img src="" alt="Silogan place" />
+              <img src="pics/silogannigian.jpg" alt="Silogan place" />
               <span class="photo-slot-label">📷 SILOGAN — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -94,12 +94,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- MILDSON PHOTO 1 — e.g. the viand spread / food counter -->
-              <img src="" alt="Mildson food" />
+              <img src="pics/mson.jpg" alt="Mildson food" />
               <span class="photo-slot-label">📷 MILDSON — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- MILDSON PHOTO 2 — e.g. the place / your plate -->
-              <img src="" alt="Mildson place" />
+              <img src="pics/Mildson.jpg" alt="Mildson place" />
               <span class="photo-slot-label">📷 MILDSON — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
