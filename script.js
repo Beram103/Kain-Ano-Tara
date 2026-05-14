@@ -72,12 +72,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- SILOGAN PHOTO 1 — e.g. the food plate / silog combo -->
-              <img src="" alt="Silogan food" />
+              <img src="pics/silogan-ni-gian2.jpg" alt="Silogan food" />
               <span class="photo-slot-label">📷 SILOGAN — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- SILOGAN PHOTO 2 — e.g. the stall / place exterior -->
-              <img src="" alt="Silogan place" />
+              <img src="pics/silogannigian.jpg" alt="Silogan place" />
               <span class="photo-slot-label">📷 SILOGAN — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -94,12 +94,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- MILDSON PHOTO 1 — e.g. the viand spread / food counter -->
-              <img src="" alt="Mildson food" />
+              <img src="pics/mson.jpg" alt="Mildson food" />
               <span class="photo-slot-label">📷 MILDSON — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- MILDSON PHOTO 2 — e.g. the place / your plate -->
-              <img src="" alt="Mildson place" />
+              <img src="pics/Mildson.jpg" alt="Mildson place" />
               <span class="photo-slot-label">📷 MILDSON — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -115,12 +115,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- FOOD COURT PHOTO 1 — e.g. stall overview / crowd -->
-              <img src="" alt="Food court" />
+              <img src="pics/foodcourt.jpg" alt="Food court" />
               <span class="photo-slot-label">📷 FOOD COURT — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- FOOD COURT PHOTO 2 — e.g. your meal / a specific stall -->
-              <img src="" alt="Food court meal" />
+              <img src="pics/fc1.jpg" alt="Food court meal" />
               <span class="photo-slot-label">📷 FOOD COURT — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -190,7 +190,7 @@
 
         hero: [
             /* SLIDE 1 — e.g. SM J Mall Food Court interior / food  */ "pics/jmall1.jpg",
-            /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "pics/brgyseoul1.jpg",
+            /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "pics/brgyseoul2.jpg",
             /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "pics/5g1.jpg",
             /* SLIDE 4 — e.g. extra image                           */ "pics/5g3.jpg",
         ],
@@ -217,12 +217,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- SM J MALL PHOTO 1 — e.g. food court interior / crowd -->
-              <img src="" alt="SM J Mall Food Court" />
+              <img src="pics/jmall1.jpg" alt="SM J Mall Food Court" />
               <span class="photo-slot-label">📷 SM J MALL — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- SM J MALL PHOTO 2 — e.g. your meal / stall variety -->
-              <img src="" alt="SM J Mall meal" />
+              <img src="pics/Messenger_creation_C1B5EE6B-8BC3-4C6C-897F-CEC9E1FECB67.jpeg" alt="SM J Mall meal" />
               <span class="photo-slot-label">📷 SM J MALL — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -238,12 +238,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- BARANGAY SEOUL PHOTO 1 — e.g. Korean lunch meal / food -->
-              <img src="" alt="Barangay Seoul food" />
+              <img src="pics/brgyseoul3.jpg" alt="Barangay Seoul food" />
               <span class="photo-slot-label">📷 BARANGAY SEOUL — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- BARANGAY SEOUL PHOTO 2 — e.g. restaurant interior / signage -->
-              <img src="" alt="Barangay Seoul place" />
+              <img src="pics/brgyseoul1.jpg" alt="Barangay Seoul place" />
               <span class="photo-slot-label">📷 BARANGAY SEOUL — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -288,12 +288,12 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- TRILLIS PHOTO 1 — e.g. food plating / main dish -->
-              <img src="" alt="Trillis food" />
+              <img src="pics/tils.jpg" alt="Trillis food" />
               <span class="photo-slot-label">📷 TRILLIS — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- TRILLIS PHOTO 2 — e.g. restaurant exterior / place vibe -->
-              <img src="" alt="Trillis place" />
+              <img src="pics/trils.jpg" alt="Trillis place" />
               <span class="photo-slot-label">📷 TRILLIS — Photo 2<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -346,11 +346,11 @@
           -->
           <div class="photo-grid">
             <div class="photo-slot">
-              <img src="pics/24chicken.jpg" alt="24 Chicken" />
+              <img src="pics/24c.jpg" alt="24 Chicken" />
               <span class="photo-slot-label">📷 24 CHICKEN — Korean fried chicken<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
-              <img src="pics/mildson.jpg" alt="Mildson" />
+              <img src="pics/son.jpg" alt="Mildson" />
               <span class="photo-slot-label">📷 MILDSON — Home-style meal<br>Replace src="" with your photo</span>
             </div>
           </div>
@@ -369,7 +369,7 @@
           -->
           <div class="photo-grid grid-3">
             <div class="photo-slot">
-              <img src="pics/garlicrice.jpg" alt="Garlic Rice" />
+              <img src="pics/gcrice.jpg" alt="Garlic Rice" />
               <span class="photo-slot-label">📷 GARLIC RICE — Sizzling plate<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
@@ -377,7 +377,7 @@
               <span class="photo-slot-label">📷 SIZZLING PLATE — Hot and savory<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
-              <img src="pics/bok.jpg" alt="BOK Chicken" />
+              <img src="pics/bokie.jpg" alt="BOK Chicken" />
               <span class="photo-slot-label">📷 BOK — Chicken box<br>Replace src="" with your photo</span>
             </div>
           </div>
