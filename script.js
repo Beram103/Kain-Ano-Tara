@@ -190,7 +190,7 @@
 
         hero: [
             /* SLIDE 1 — e.g. SM J Mall Food Court interior / food  */ "pics/jmall1.jpg",
-            /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "pics/brgysoul1.jpg",
+            /* SLIDE 2 — e.g. Barangay Seoul / Korean food shot     */ "pics/brgyseoul1.jpg",
             /* SLIDE 3 — e.g. 5G Coffee House or Trillis ambiance   */ "pics/5g1.jpg",
             /* SLIDE 4 — e.g. extra image                           */ "pics/5g3.jpg",
         ],
@@ -323,7 +323,7 @@
         ══════════════════════════════════════════ */
         hero: [
             /* SLIDE 1 — e.g. 24 Chicken / Korean fried chicken */ "pics/24chicken1.jpg",
-            /* SLIDE 2 — e.g. Mildson home-style meal */ "pics/mldson6.jpg",
+            /* SLIDE 2 — e.g. Mildson home-style meal */ "pics/mildson6.jpg",
             /* SLIDE 3 — e.g. Garlic Rice sizzling plate */ "pics/garlic-rice.jpg",
             /* SLIDE 4 — e.g. BOK chicken box */ "pics/5g6.jpg",
         ],
