@@ -288,7 +288,7 @@
           <div class="photo-grid">
             <div class="photo-slot">
               <!-- TRILLIS PHOTO 1 — e.g. food plating / main dish -->
-              <img src="pics/tils.jpg" alt="Trillis food" />
+              <img src="pics/trilis1.jpg" alt="Trillis food" />
               <span class="photo-slot-label">📷 TRILLIS — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
