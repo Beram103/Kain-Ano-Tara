@@ -140,19 +140,13 @@
           <div class="photo-grid grid-3">
             <div class="photo-slot">
               <!-- PUNGKO-PUNGKO PHOTO 1 — e.g. the fried chicken up close -->
-              <img src="" alt="Pungko pungko chicken" />
+              <img src="pics/pungko1.jpg" alt="Pungko pungko chicken" />
               <span class="photo-slot-label">📷 PUNGKO-PUNGKO — Photo 1<br>Replace src="" with your photo</span>
             </div>
             <div class="photo-slot">
               <!-- PUNGKO-PUNGKO PHOTO 2 — e.g. the stall setup / BBQ sticks -->
-              <img src="" alt="Pungko pungko stall" />
+              <img src="pics/pungko2.jpg" alt="Pungko pungko stall" />
               <span class="photo-slot-label">📷 PUNGKO-PUNGKO — Photo 2<br>Replace src="" with your photo</span>
-            </div>
-            <!-- ▼ OPTIONAL 3RD PHOTO — delete this block to go back to 2 photos -->
-            <div class="photo-slot">
-              <!-- PUNGKO-PUNGKO PHOTO 3 — e.g. the pungko setup / stools -->
-              <img src="" alt="Pungko pungko vibe" />
-              <span class="photo-slot-label">📷 PUNGKO-PUNGKO — Photo 3<br>Replace src="" with your photo</span>
             </div>
           </div>
 
